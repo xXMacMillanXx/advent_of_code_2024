@@ -1,5 +1,3 @@
-module main
-
 import os
 
 fn main() {
@@ -7,9 +5,9 @@ fn main() {
 	mut right := []int{}
 
 	for line in os.read_lines('input.txt')! {
-		nums := line.split(' ')
-		left << nums.first().int()
-		right << nums.last().int()
+		nums := line.split(' ').map(it.int())
+		left << nums.first()
+		right << nums.last()
 	}
 
 	mut sim := map[int]int{}
