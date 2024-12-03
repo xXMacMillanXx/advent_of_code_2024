@@ -1,5 +1,23 @@
 import os
 
+fn cutout(nums []int, i int) []int {
+    mut ret := nums[..i].clone()
+    if i+1 < nums.len {
+        ret << nums[i+1..]
+    }
+    return ret
+}
+
+fn checkup(nums []int) bool {
+	for i in 0 .. nums.len {
+        cut_nums := cutout(nums, i)
+	    if is_safe(cut_nums) {
+            return true
+        }
+    }
+    return false
+}
+
 fn is_safe(nums []int) bool {
 	mut increase := true
 	if nums[0] < nums[1] {
@@ -31,7 +49,9 @@ fn main() {
 		data << line.split(' ').map(it.int())
 		if is_safe(data[i]) {
 			safe << data[i]
-		}
+		} else if checkup(data[i]) {
+            safe << data[i]
+        }
 	}
 
 	println(safe.len)
