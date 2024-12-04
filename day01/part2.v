@@ -5,7 +5,7 @@ fn main() {
 	mut right := []int{}
 
 	for line in os.read_lines('input.txt')! {
-		nums := line.split(' ').map(it.int())
+		nums := line.fields().map(it.int())
 		left << nums.first()
 		right << nums.last()
 	}
